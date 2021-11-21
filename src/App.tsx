@@ -6,15 +6,15 @@ import { AddNewItem } from "./AddNewItem";
 import { useAppState } from "./AppStateContext";
 
 function App() {
-  const { state } = useAppState();
+  const { state, dispatch } = useAppState();
 
   return (
     <AppContainer>
       {state.lists.map((list, index) => (
-        <Column text={list.text} key={list.id} index={index} />
+        <Column id={list.id} text={list.text} key={list.id} index={index} />
       ))}
       <AddNewItem
-        onAdd={(text) => console.log(text)}
+        onAdd={(text) => dispatch({ type: "ADD_LIST", payload: text })}
         toggleButtonText="+ Add another list"
       />
     </AppContainer>
